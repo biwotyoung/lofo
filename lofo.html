@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost & Found System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-search"></i> Lost & Found System</h1>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active" id="home-link">Home</a></li>
+                    <li><a href="#" id="report-link">Report Item</a></li>
+                    <li><a href="#" id="browse-link">Browse Items</a></li>
+                    <li><a href="#" id="about-link">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Home Section -->
+        <section id="home-section">
+            <div class="hero">
+                <h2>Reuniting People with Their Lost Items</h2>
+                <p>Found something? Lost something? Our system helps connect lost items with their owners.</p>
+                <div class="cta-buttons">
+                    <button id="report-found-btn" class="btn primary">I Found an Item</button>
+                    <button id="report-lost-btn" class="btn secondary">I Lost an Item</button>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>1,250+</h3>
+                    <p>Items Recovered</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <h3>850+</h3>
+                    <p>Happy Users</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>50+</h3>
+                    <p>Locations Covered</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Report Item Section (initially hidden) -->
+        <section id="report-section" class="hidden">
+            <h2>Report Lost or Found Item</h2>
+            <form id="item-form">
+                <div class="form-group">
+                    <label for="item-type">Item Type:</label>
+                    <select id="item-type" required>
+                        <option value="">Select item type</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="documents">Documents</option>
+                        <option value="clothing">Clothing</option>
+                        <option value="jewelry">Jewelry</option>
+                        <option value="keys">Keys</option>
+                        <option value="bag">Bag/Wallet</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="item-status">Status:</label>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="status" value="lost" checked> Lost
+                        </label>
+                        <label>
+                            <input type="radio" name="status" value="found"> Found
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="item-title">Title/Description:</label>
+                    <input type="text" id="item-title" placeholder="Brief description of the item" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="item-details">Details:</label>
+                    <textarea id="item-details" placeholder="Provide more details about the item (color, brand, identifying marks, etc.)" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="item-location">Location:</label>
+                    <input type="text" id="item-location" placeholder="Where was it lost/found?" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="item-date">Date:</label>
+                    <input type="date" id="item-date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="item-image">Upload Image (optional):</label>
+                    <input type="file" id="item-image" accept="image/*">
+                </div>
+
+                <div class="form-group">
+                    <label for="contact-info">Your Contact Information:</label>
+                    <input type="text" id="contact-info" placeholder="Email or phone number" required>
+                </div>
+
+                <button type="submit" class="btn primary">Submit Report</button>
+            </form>
+        </section>
+
+        <!-- Browse Items Section (initially hidden) -->
+        <section id="browse-section" class="hidden">
+            <h2>Browse Lost & Found Items</h2>
+            
+            <div class="search-filters">
+                <div class="form-group">
+                    <label for="search-term">Search:</label>
+                    <input type="text" id="search-term" placeholder="Search items...">
+                </div>
+                
+                <div class="form-group">
+                    <label for="filter-status">Status:</label>
+                    <select id="filter-status">
+                        <option value="all">All</option>
+                        <option value="lost">Lost</option>
+                        <option value="found">Found</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="filter-type">Item Type:</label>
+                    <select id="filter-type">
+                        <option value="all">All Types</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="documents">Documents</option>
+                        <option value="clothing">Clothing</option>
+                        <option value="jewelry">Jewelry</option>
+                        <option value="keys">Keys</option>
+                        <option value="bag">Bag/Wallet</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <button id="apply-filters" class="btn primary">Apply Filters</button>
+            </div>
+            
+            <div class="items-grid" id="items-container">
+                <!-- Items will be loaded here dynamically -->
+                <div class="no-items">Loading items...</div>
+            </div>
+        </section>
+
+        <!-- About Section (initially hidden) -->
+        <section id="about-section" class="hidden">
+            <h2>About Our Lost & Found System</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Our Lost & Found System is designed to help people recover their lost belongings and return found items to their rightful owners.</p>
+                    <p>The system serves the entire community, including students, staff, and visitors to our campus.</p>
+                    <h3>How It Works:</h3>
+                    <ol>
+                        <li>Report a lost or found item with as much detail as possible</li>
+                        <li>Our system matches lost and found items based on descriptions</li>
+                        <li>You'll be notified when a potential match is found</li>
+                        <li>Arrange for item return through secure communication</li>
+                    </ol>
+                    <h3>Contact Us:</h3>
+                    <p>If you have any questions, please email <a href="mailto:help@lostandfound.example">help@lostandfound.example</a></p>
+                </div>
+                <div class="about-image">
+                    <img src="C:\xampp\htdocs\lost-and-found\uploads\caleb11.jpg" alt="Lost and found items">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Lost & Found System. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
