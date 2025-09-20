@@ -172,12 +172,3 @@ async function submitItem(formData) {
         throw error; // Re-throw for form handling
     }
 }});
-
-// Temporary debug
-const response = await fetch(API_URL, {
-    method: 'POST',
-    body: formData
-});
-const text = await response.text();
-console.log('FULL RESPONSE:', text);
-alert('Response: ' + text.substring(0, 200)); // Show first 200 chars
